@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 // Sub Layouts
 import Header from '../../staticComponents/header';
+import Nav from '../../staticComponents/nav';
 import SimpleFooter from '../../staticComponents/footer';
 
 // Components
@@ -14,14 +15,15 @@ import NotFound from '../../app/notFound';
 
 const AccountLayout = ({ match }) => (
   <div className="container-fluid row-no-padding">
-    {match.path === "/account/" ? <Header /> : ''}
+    {/* {match.path === "/account" ? <Header /> : ''}
+    {match.path === "/account" ? <Nav /> : ''} */}
     <Switch>
       <Route path={`${match.path}/signin`} component={SignIn} />
       <Route path={`${match.path}/signup`} component={SignUp} />
       <Route path={`${match.path}/reset`} component={Reset} />
-      <Route component={NotFound} />
+      {/* <Route component={NotFound} /> */}
     </Switch>
-    {match.path === "/account/" ? <SimpleFooter /> : ''}
+    {/* {match.path === "/account" ? <SimpleFooter /> : ''} */}
   </div>
 )
 

@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+
 
 // Sub Layouts
 import Header from '../../staticComponents/header';
@@ -13,12 +14,14 @@ import dashboard from './components/dashboard';
 const dashboardLayout = ({ match }) => (
   <div className="container-fluid">
     <Header>
-    <Nav />
+      <Nav />
     </Header>
-    <switch>
+    <Switch>
+      {/* <Route path={`${match.path}`} component={initFirebase(dashboard)} /> */}
       <Route path={`${match.path}`} component={dashboard} />
-    </switch>
+    </Switch>
     <Footer />
   </div>
 )
- export default dashboardLayout;
+
+export default dashboardLayout;

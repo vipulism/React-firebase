@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+.header-icon{
+    margin-right: 30px;
+}
+.logo{
+    width: 150px;
+}
+.center,.center div {
+	text-align: center;
+	color: white;
+}
+table.table , table.table.pmd-table.table-striped.table-success {
+    margin-bottom: 0px;
+}
+
+.table-success td:first-child {
+    border-left: 20px solid green;
+}
+
+.table-warning td:first-child {
+    border-left: 20px solid orange;
+}
+
+.table-danger td:first-child {
+    border-left: 20px solid red;
+}
+.table-parked td:first-child  {
+    border-left: 20px solid #9e8e8e;
+}
+
+.table-parked {
+    background: #f9f3f3;
+}
+
+.table-success td:last-child{
+    margin-bottom: 30px;
+}
+
+.pLeft0{
+	padding-left: 0px;
+}
+td {
+    border: 1px solid #ffffff;
+}
+.pmd-table.table>thead>tr>th{
+    font-size: 16px;
+}
