@@ -10,7 +10,9 @@ export default class dashboard extends Component {
     super();
     this.state = {
       cars: [],
-      call_for: 0
+      filteredCars: [],
+      call_for: 0,
+      fillterBy: 'cell_no'
     }
   }
   componentDidMount() {
@@ -31,45 +33,76 @@ export default class dashboard extends Component {
       })
 
       console.log(newCars);
-      const totalCallFor = newCars.filter( item => item.status === 2 ).length;
+      const totalCallFor = newCars.filter(item => item.status === 2).length;
       console.log(totalCallFor);
-      
-      self.setState({ cars: newCars, call_for: totalCallFor })
+
+      self.setState({ cars: newCars, filteredCars: newCars, call_for: totalCallFor })
 
     }
     valetData('v01').on('value', function (res) {
-      console.log();
+
       cars = res.val();
+      Object.keys(cars).map( item => {
+
+        cars[item].statusVal = self.getStatus(cars[item].status);
+
+      });
       //self.setState({ cars })
-       sort(cars);
+      sort(cars);
     });
 
 
   }
 
-  filterCars(filterby){
-
+  filterCars(e) {
     const cars = this.state.cars;
-     filterby = filterby.target.value;
-    
-    if(filterby){
+    var val = e.target.value.toLocaleLowerCase();
+    if (val) {
 
-      let filtterResult = cars.filter(item => {
-        console.log(filterby);
-        return item.cell_no.toString().indexOf(filterby) != -1
-      })
-  
-      this.setState({ cars : filtterResult});
-    }else{
-      console.log(cars);
+      const fillterBy = this.state.fillterBy == 'status' ? 'statusVal' : this.state.fillterBy;
+      console.log(fillterBy); 
       
-      this.setState({ cars });
+      let filtterResult = cars.filter(item => {
+        return item[fillterBy].toString().indexOf(val) != -1;
+      });
+
+      this.setState({ filteredCars: filtterResult });
+
+    } else {
+      this.setState({ filteredCars: cars });
     }
 
-    //console.log(filtterResult);
-    
+  }
+  getStatus(statusCode) {
+
+    switch (statusCode) {
+      case 1:
+        return 'called for'
+        break;
+      case 2:
+        return 'waiting'
+        break;
+      case 3:
+        return 're-parking'
+        break;
+      case 4:
+        return 'parked'
+        break;
+      case 5:
+        return 'chekout'
+        break;
+      default:
+        return '-'
+        break;
+    }
 
   }
+
+  changeFilter(e) {
+    var fillterBy = e.target.value.toLocaleLowerCase();
+    this.setState({ fillterBy: fillterBy });
+  }
+
 
   render() {
     // const { dashboard } = this.props;
@@ -84,17 +117,17 @@ export default class dashboard extends Component {
                 </div>
                 <div className="col-lg-12 col-xs-12">
                   <div className="form-group pLeft0 col-sm-4">
-                    <select className="form-control">
-                      <option>Cell</option>
-                      <option>Name</option>
-                      <option>Model</option>
-                      <option>Status</option>
-                      <option>Car-no.</option>
+                    <select value={this.state.fillterBy} onChange={(e) => this.changeFilter(e)} className="form-control">
+                      <option value="cell_no">Cell</option>
+                      <option value="name">Name</option>
+                      <option value="car_modal">Model</option>
+                      <option value="status">Status</option>
+                      <option value="car_no">Car Number</option>
                     </select>
                   </div>
                   <div className="form-group icon-right col-sm-8">
                     <div className="floatinglabels pmd-textfield">
-                      <input type="text"  onChange={ (e) => this.filterCars(e) } placeholder="Search..." className="form-control" /><span className="pmd-textfield-focused"></span>
+                      <input type="text" onBlur={(e) => this.filterCars(e)} onKeyUp={(e) => this.filterCars(e)} placeholder="Search..." className="form-control" /><span className="pmd-textfield-focused"></span>
                       <span className="dic dic-search">&nbsp;</span>
                     </div>
                   </div>
@@ -115,7 +148,7 @@ export default class dashboard extends Component {
                             <th>Status</th>
                           </tr>
 
-                          {this.state.cars.map(item => <Car
+                          {this.state.filteredCars.map(item => <Car
                             name={item.name}
                             key={item.id}
                             id={item.id}
@@ -123,6 +156,7 @@ export default class dashboard extends Component {
                             model={item.car_modal}
                             car={item.car_no}
                             status={item.status}
+                            statusVal={this.getStatus(item.status)}
                           />)}
 
                           {/* { this.state.cars.map(item => <Car

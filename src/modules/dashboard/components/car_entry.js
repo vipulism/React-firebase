@@ -8,20 +8,20 @@ class Car extends Component {
   }
   getStatus(statusCode, style) {
     switch (statusCode) {
-      case 4:
-        return style ? 'table-parked' : 'Parked'
-        break;
       case 1:
-        return style ? 'table-success' : 'Called For'
+        return style ? 'table-success' : 'called for'
         break;
       case 2:
-        return style ? 'table-danger' : 'Waiting'
-        break;
-      case 5:
-        return style ? 'table-parked' : 'Chekout'
+        return style ? 'table-danger' : 'waiting'
         break;
       case 3:
-        return style ? 'table-warning' : 'Re-Parking'
+        return style ? 'table-warning' : 're-parked'
+        break;
+      case 4:
+        return style ? 'table-parked' : 'parked'
+        break;
+      case 5:
+        return style ? 'table-parked' : 'chekout'
         break;
       default:
         return '-'

@@ -26,7 +26,7 @@ window.jQuery = jquery;
 // window.$ = require('../assets/js/jquery-1.12.2.min.js');
 let Bootstrap = require('bootstrap');
 
-let propeller = require('../assets/js/propeller'); 
+let propeller = require('../assets/js/propeller');
 
 const dd = 'asdasd'
 
@@ -34,13 +34,14 @@ const dd = 'asdasd'
 export default class App extends Component {
   render() {
     return (
-        <Router>
-            <Switch>
-              <Route exact path="/" component={ DashboardLayout } somthing="asdasd" />
-              <Route  path="/account" component={AccountLayout} />
-              <Route component={NotFound} />
-            </Switch>
-        </Router>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={DashboardLayout} somthing="asdasd" />
+          <Route path="/account" component={AccountLayout} />
+          <Route component={NotFound} />
+        </Switch>
+      </Router>
     );
   }
 }
+ 
