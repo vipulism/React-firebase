@@ -43,38 +43,34 @@ export default class dashboard extends Component {
 
       cars = res.val();
       Object.keys(cars).map( item => {
-
         cars[item].statusVal = self.getStatus(cars[item].status);
-
       });
       //self.setState({ cars })
       sort(cars);
     });
-
-
+    
   }
 
-  filterCars(e) {
+  applyFilterCars() {
     const cars = this.state.cars;
-    var val = e.target.value.toLocaleLowerCase();
-    if (val) {
+    const val = this.refs.searchInput.value; //e.target.value.toLocaleLowerCase();
 
+    if (val) {
       const fillterBy = this.state.fillterBy == 'status' ? 'statusVal' : this.state.fillterBy;
-      console.log(fillterBy); 
       
       let filtterResult = cars.filter(item => {
         return item[fillterBy].toString().indexOf(val) != -1;
       });
-
+      
       this.setState({ filteredCars: filtterResult });
-
+      
     } else {
       this.setState({ filteredCars: cars });
     }
 
   }
-  getStatus(statusCode) {
 
+  getStatus(statusCode) {
     switch (statusCode) {
       case 1:
         return 'called for'
@@ -95,17 +91,15 @@ export default class dashboard extends Component {
         return '-'
         break;
     }
-
   }
 
   changeFilter(e) {
     var fillterBy = e.target.value.toLocaleLowerCase();
-    this.setState({ fillterBy: fillterBy });
+    this.setState({ fillterBy: fillterBy }, () => this.applyFilterCars());
   }
 
 
   render() {
-    // const { dashboard } = this.props;
     return (
       <main>
         <div id="content" className="pmd-content content-area dashboard">
@@ -127,7 +121,7 @@ export default class dashboard extends Component {
                   </div>
                   <div className="form-group icon-right col-sm-8">
                     <div className="floatinglabels pmd-textfield">
-                      <input type="text" onBlur={(e) => this.filterCars(e)} onKeyUp={(e) => this.filterCars(e)} placeholder="Search..." className="form-control" /><span className="pmd-textfield-focused"></span>
+                      <input ref="searchInput" type="text" onBlur={() => this.applyFilterCars()} onKeyUp={(e) => this.applyFilterCars(e)} placeholder="Search..." className="form-control" /><span className="pmd-textfield-focused"></span>
                       <span className="dic dic-search">&nbsp;</span>
                     </div>
                   </div>

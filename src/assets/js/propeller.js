@@ -157,6 +157,18 @@ $(document).ready(function () {
  * Licensed under MIT (http://propeller.in/LICENSE)
  */
 $(document).ready(function () {
+
+	// allDropDown = document.getElementsByClassName("pmd-dropdown dropdown-menu");
+
+	// allDropDown.map( item => {
+
+	// 	wrapper = "<div id='slidesInner'>" + item.innerHTML + "</div>";
+
+	// })
+
+	// document.getElementById("slidesContainer").innerHTML = new_html;
+
+
 	$('.pmd-dropdown .dropdown-menu').wrap("<div class='pmd-dropdown-menu-container'></div>");
 	$('.pmd-dropdown .dropdown-menu').before('<div class="pmd-dropdown-menu-bg"></div>');
 
