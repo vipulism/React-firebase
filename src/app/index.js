@@ -9,12 +9,14 @@ import jquery from 'jquery';
 import '../assets/css/bootstrap.css';
 import '../assets/css/propeller.min.css';
 import '../assets/css/style.css';
+import '../assets/css/style.css';
 import '../components/datetimepicker/css/bootstrap-datetimepicker.css';
 import '../themes/css/propeller-theme.css';
 import '../themes/css/propeller-admin.css';
 
 // import Module/components
 import DashboardLayout from '../modules/dashboard';
+import Entryform from '../modules/entryform';
 import AccountLayout from '../modules/login';
 import signIn from '../modules/login/components/signIn';
 import NotFound from './notFound';
@@ -36,7 +38,7 @@ export default class App extends Component {
     return (
       <Router>
         <Switch>
-          <Route exact path="/" component={DashboardLayout} somthing="asdasd" />
+          <Route path="/" component={DashboardLayout} somthing="asdasd" />
           <Route path="/account" component={AccountLayout} />
           <Route component={NotFound} />
         </Switch>

@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import Car from './car_entry';
+import { Switch, Route, Redirect, NavLink } from 'react-router-dom';
 
-import { valetData } from '../../../modules/firebase';
+import { valetData, valetV1Data } from '../../../modules/firebase';
 
 
 export default class dashboard extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       cars: [],
       filteredCars: [],
@@ -17,6 +18,8 @@ export default class dashboard extends Component {
   }
   componentDidMount() {
 
+    //console.log(this.props.fun);
+    this.props.fun();
     var self = this;
     var cars = {};
 
@@ -34,9 +37,9 @@ export default class dashboard extends Component {
 
       console.log(newCars);
       const totalCallFor = newCars.filter(item => item.status === 2).length;
-      console.log(totalCallFor);
 
-      self.setState({ cars: newCars, filteredCars: newCars, call_for: totalCallFor })
+      self.setState({ cars: newCars, filteredCars: newCars, call_for: totalCallFor });
+     
 
     }
     valetData('v01').on('value', function (res) {
@@ -48,7 +51,11 @@ export default class dashboard extends Component {
       //self.setState({ cars })
       sort(cars);
     });
-    
+
+     valetV1Data.then((successMessage) => {
+     // console.log(successMessage);
+    }); 
+    //console.log(myFirstPromise());
   }
 
   applyFilterCars() {
@@ -145,12 +152,12 @@ export default class dashboard extends Component {
                           {this.state.filteredCars.map(item => <Car
                             name={item.name}
                             key={item.id}
-                            id={item.id}
-                            cell={item.cell_no}
+                            id={parseInt(item.id)}
+                            cell={parseInt(item.cell_no)}
                             model={item.car_modal}
                             car={item.car_no}
                             status={item.status}
-                            statusVal={this.getStatus(item.status)}
+                            statusVal={this.getStatus(parseInt(item.status))}
                           />)}
 
                           {/* { this.state.cars.map(item => <Car
@@ -172,6 +179,7 @@ export default class dashboard extends Component {
                 </div>
               </div>
             </div>
+            <div className="called-for-value">{this.state.call_for} </div>
           </div>
         </div>
       </main>

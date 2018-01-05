@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-
-
-
+import { NavLink } from 'react-router-dom';
 export default class Nav extends Component {
 
   constructor(props){
     super(props);
     this.state = {
-      hamburger : props.hamburger
+      hamburger : props.hamburger,
     }
   }
   
@@ -28,7 +26,7 @@ export default class Nav extends Component {
                 </a>
             </li>
             <li>
-                <a className="pmd-ripple-effect" href="index.html">
+                <NavLink to="/" className="pmd-ripple-effect">
                   <i className="media-left media-middle"><svg version="1.1" x="0px" y="0px" width="19.83px" height="18px" viewBox="287.725 407.535 19.83 18" enableBackground="new 287.725 407.535 19.83 18" space="preserve">
 <g>
                       <path fill="#fff" d="M307.555,407.535h-9.108v10.264h9.108V407.535z M287.725,407.535v6.232h9.109v-6.232H287.725z
@@ -36,10 +34,10 @@ export default class Nav extends Component {
 </g>
 </svg></i>
                 <span className="media-body">Dashboard</span>
-                </a>
+                </NavLink>
             </li>
             <li>
-              <a className="pmd-ripple-effect" href="form.html">
+            <NavLink to="/entry" className="pmd-ripple-effect">
                 <i className="media-left media-middle"><svg version="1.1" x="0px" y="0px" width="14.187px" height="18px" viewBox="0 0 14.187 18" enableBackground="new 0 0 14.187 18" space="preserve">
 <path fill="#fff" d="M0,0v18h14.187V0H0z M3.121,3.293h2.023v4.767H3.121V3.293z M11.211,14.764H2.948v-2.022h8.263V14.764
                     L11.211,14.764z M11.211,11.585H2.948V9.563h8.263V11.585L11.211,11.585z M11.211,8.407H7.455V6.385h3.756V8.407z M11.211,5.229
@@ -47,11 +45,11 @@ export default class Nav extends Component {
 </svg></i>
               <span className="media-body">Entry Form</span>
               <div className="media-right media-bottom"><i className="dic-more-vert dic"></i></div>
-                </a>
+                </NavLink>
             </li>
           <li>
             <a className="pmd-ripple-effect" href="notifications.html">
-              <i className="media-left media-middle">
+              <i className="media-left media-middle pmd-sm pmd-badge  pmd-badge-overlap" data-badge= { this.props.totalCallFor } >
                 <svg version="1.1" id="Layer_1" x="0px" y="0px" width="15.3px" height="18px" viewBox="289.99 337.535 15.3 18" enableBackground="new 289.99 337.535 15.3 18" space="preserve">
                     <g>
                   <g>
