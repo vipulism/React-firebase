@@ -35,6 +35,16 @@ table.table , table.table.pmd-table.table-striped.table-success {
 .table-success td:last-child{
     margin-bottom: 30px;
 }
+.add-icon{
+    border: 2px solid #1a5ac3;
+    color: white;
+    background: #4285f4;
+    border-radius: 30px;
+    font-size: 28px !important;
+}
+a.dropdown-toggle.pmd-ripple-effect.header-icon.center {
+    margin-top: 20px;
+}
 
 .pLeft0{
 	padding-left: 0px;

@@ -188,9 +188,7 @@ h2.typo-fill-secondary{ color:rgba(77, 87, 93, 0.68); font-size:22px;}
 }
 
 /*footer*/
-.admin-footer { background: #fff none repeat scroll 0 0; border-top: 1px solid rgba(0, 0, 0, 0.1); padding-bottom: 14px; padding-top: 17px; transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1) 0s; margin-top:-70px; position:relative; z-index:1;
-    bottom: 0;
-    position: absolute;}
+.admin-footer { background: #fff none repeat scroll 0 0; border-top: 1px solid rgba(0, 0, 0, 0.1); padding-bottom: 14px; padding-top: 17px; transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1) 0s; margin-top:-70px; position:relative; z-index:1;}
 .pmd-sidebar ~ .admin-footer { padding-left: 64px; }
 .pmd-sidebar.pmd-sidebar-open ~ .admin-footer { padding-left: 290px;}
 .copyright-text { color: #4d575d; font-size: 14px; padding-top: 8px;}

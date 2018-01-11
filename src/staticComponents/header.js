@@ -37,7 +37,7 @@ export default class Header extends Component {
         <nav className="navbar navbar-inverse navbar-fixed-top pmd-navbar pmd-z-depth">
           <div className="container-fluid">
             <div className="pmd-navbar-right-icon pull-right navigation">
-              <div className="dropdown notification icons pmd-dropdown">
+              <div className="dropdown icons pmd-dropdown">
                 <a href="#" className="dropdown-toggle pmd-ripple-effect header-icon center" role="button" aria-expanded="true">
                   <div className="">DLF Promenade</div>
                 </a>

@@ -9,7 +9,7 @@ import jquery from 'jquery';
 import '../assets/css/bootstrap.css';
 import '../assets/css/propeller.min.css';
 import '../assets/css/style.css';
-import '../assets/css/style.css';
+import '../assets/css/notification.css';
 import '../components/datetimepicker/css/bootstrap-datetimepicker.css';
 import '../themes/css/propeller-theme.css';
 import '../themes/css/propeller-admin.css';

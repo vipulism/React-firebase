@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
-
+import dashboard from './dashboard';
+import { valetData, valetV1Data } from '../../../modules/firebase';
 
 class Car extends Component {
   constructor(props) {
     super(props);
-
+    this.state = {
+      changedStatus: "Reparked",
+      updatedStatus : "",
+      profileId:0
+    }
   }
+
   getStatus(statusCode, style) {
     switch (statusCode) {
       case 1:
@@ -28,6 +34,7 @@ class Car extends Component {
         break;
     }
   }
+
   render() {
     return (
       <tr className={  this.getStatus(this.props.status, 'style') } >
@@ -42,7 +49,7 @@ class Car extends Component {
             <button className="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button" id="dropdownMenuTopRight" data-toggle="dropdown" aria-expanded="true">
               <i className="material-icons pmd-sm">more_vert</i></button>
             <ul aria-labelledby="dropdownMenu3" role="menu" className="dropdown-menu pmd-dropdown-menu-top-right">
-              <li role="presentation"><a href="javascript:void(0);" tabIndex="-1" role="menuitem">Regular link</a></li>
+              <li role="" ref="changedStatus" onClick={() => {this.setState({updatedStatus: this.state.changedStatus, profileId:  this.props.id});console.log(this.state.updatedStatus, this.state.profileId); this.props.update(this.state.profileId, this.state.updatedStatus);}}><a tabIndex="-1" role="menuitem">{this.state.changedStatus}</a></li>
             </ul></span></td>
       </tr>
     )

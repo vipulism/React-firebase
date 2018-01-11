@@ -13,8 +13,16 @@ export default class dashboard extends Component {
       cars: [],
       filteredCars: [],
       call_for: 0,
-      fillterBy: 'cell_no'
+      fillterBy: 'cell_no',
+      profileId: '',
+      updatedStatus: ''
     }
+
+    this.update = this.update.bind(this);
+  }
+
+  update(e, f){
+    this.setState({profileId: e, updatedStatus: f});
   }
   componentDidMount() {
 
@@ -125,13 +133,16 @@ export default class dashboard extends Component {
                       <option value="status">Status</option>
                       <option value="car_no">Car Number</option>
                     </select>
+
                   </div>
-                  <div className="form-group icon-right col-sm-8">
+                  <div className="form-group icon-right col-sm-7">
                     <div className="floatinglabels pmd-textfield">
                       <input ref="searchInput" type="text" onBlur={() => this.applyFilterCars()} onKeyUp={(e) => this.applyFilterCars(e)} placeholder="Search..." className="form-control" /><span className="pmd-textfield-focused"></span>
                       <span className="dic dic-search">&nbsp;</span>
                     </div>
                   </div>
+
+                  <div className="form-group icon-right col-sm-1"><NavLink to="/entry"> <i class="material-icons pmd-md add-icon">add</i></NavLink></div>
                 </div>
               </div>
               <div className="col-xs-12 col-sm-12 col-md-12">
@@ -157,7 +168,7 @@ export default class dashboard extends Component {
                             model={item.car_modal}
                             car={item.car_no}
                             status={item.status}
-                            statusVal={this.getStatus(parseInt(item.status))}
+                            statusVal={this.getStatus(parseInt(item.status))} update={this.update}
                           />)}
 
                           {/* { this.state.cars.map(item => <Car
@@ -173,13 +184,12 @@ export default class dashboard extends Component {
                         </thead>
                         <tbody className="content">
                         </tbody>
-                      </table>
+                      </table>  
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="called-for-value">{this.state.call_for} </div>
           </div>
         </div>
       </main>

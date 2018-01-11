@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { valetData, valetV1Data, db } from '../../../modules/firebase';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
-import {createNotification} from '../../../assets/js/notification';
-
+// import {createNotification} from '../../../assets/js/notification';
+import Notification from '../../../sharedComponents/notifications';
 export default class Form extends Component {
 state = {
     name: 'd',
@@ -113,9 +113,8 @@ state = {
                         <div className="pmd-card-actions">
                             <a href="javascript:void(0);" className="btn btn-primary next" onClick={() => {db.ref(`valet/v01/`+ this.state.id).set({ name: this.state.name,cell_no: this.state.cell_no,car_no: this.state.car_no, car_modal: this.state.car_modal, id: this.state.id, status:parseInt(this.state.status)});}}>Submit</a>
                         </div>
-
                         <div className="pmd-card-actions">
-                            <a href="javascript:void(0);" className="btn btn-primary next" onClick={() =>{console.log(NotificationManager); NotificationManager.warning('Warning message', 'Close after 3000ms', 3000);}}>Notification</a>
+                        <Notification />
                         </div>
                     </div>
                    
